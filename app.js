@@ -1,3 +1,10 @@
+const toggleBtn = document.querySelector('.toggle');
+
+toggleBtn.addEventListener('click',()=>{
+    toggleBtn.classList.toggle('active');
+    document.body.classList.toggle('light-mode');
+})
+
 function getAnalog(){
     const secondHand = document.querySelector('.sec-hand');
     const minuteHand = document.querySelector('.min-hand');
@@ -21,13 +28,14 @@ function getDigital(){
     
     const currentTime = new Date();
 
-    secondText.textContent = currentTime.getSeconds();
-    minuteText.textContent = currentTime.getMinutes();
-    hourText.textContent = currentTime.getHours();
+    secondText.textContent = ('0'+currentTime.getSeconds()).slice(-2);
+    minuteText.textContent = ('0'+currentTime.getMinutes()).slice(-2);
+    hourText.textContent =('0'+currentTime.getHours()).slice(-2);
 
     if(hourText.textContent>12){
         ampm.textContent = "PM";
-        hourText.textContent-=12;
+        let hour = hourText.textContent - 12;
+        hourText.textContent = ('0'+hour).slice(-2);
     }
     else{
         ampm.textContent = "AM";
@@ -43,7 +51,7 @@ function getDate(){
     "July", "August", "September", "October", "November", "December"];
     const currentTime = new Date();
     
-    date.textContent = currentTime.getDate();
+    date.textContent = ('0'+currentTime.getDate()).slice(-2);
     month.textContent = monthNames[currentTime.getMonth()];
     year.textContent = currentTime.getFullYear();
 }

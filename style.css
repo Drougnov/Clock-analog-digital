@@ -1,20 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
+:root{
+    --hue-clr: 240;
+    --text-clr: hsl(var(--hue-clr), 12%, 75%);
+    --main-bg:hsl(var(--hue-clr), 10%, 16%);
+    --blue-clr: hsl(var(--hue-clr), 53%, 49%);
+    --num-clr: hsl(var(--hue-clr), 12%, 65%);
+    --bold-clr:hsl(var(--hue-clr), 12%, 95%);
+    --clock-box-shadow:6px 6px 16px hsl(var(--hue-clr), 8%, 12%),
+    -6px -6px 16px hsl(var(--hue-clr), 8%, 20%), 
+    inset -6px -6px 16px hsl(var(--hue-clr), 8%, 20%), 
+    inset 6px 6px 12px hsl(var(--hue-clr), 8%, 12%);
+    --toggle-box-shadow:inset -1px -1px 1px hsla(var(--hue-clr), 8%, 20%, 1), 
+    inset 1px 1px 1px hsla(var(--hue-clr), 8%, 12%, 1);
+}
+:root .light-mode{
+    --text-clr: hsl(var(--hue-clr),12%,35%);
+    --main-bg: hsl(var(--hue-clr),24%,94%);
+    --blue-clr: hsl(var(--hue-clr), 53%, 49%);
+    --num-clr: hsl(var(--hue-clr),12%,45%);
+    --bold-clr: hsl(var(--hue-clr),53%,15%);
+    --clock-box-shadow:-6px -6px 16px white, 
+    6px 6px 16px hsla(var(--hue-clr), 30%, 86%, 1), 
+    inset 6px 6px 16px hsla(var(--hue-clr), 30%, 86%, 1), 
+    inset -6px -6px 16px white;
+    --toggle-box-shadow:inset -1px -1px 1px hsla(var(--hue-clr), 0%, 100%, 1), 
+    inset 1px 1px 1px hsla(var(--hue-clr), 30%, 86%, 1);
+}
 body{
     min-height: 100vh;
+    color: var(--text-clr);
+    background: var(--main-bg);
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 main .analog{
-    width: 250px;
-    height: 250px;
-    border: 1px solid black;
+    width: 220px;
+    height: 220px;
+    box-shadow: var(--clock-box-shadow);
     border-radius: 50%;
+    margin-bottom: 3rem;
+    cursor: pointer;
     position: relative;
 }
 .analog::after{
@@ -23,19 +61,50 @@ main .analog{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 10px;
-    height: 10px;
-    background: black;
+    width: 8px;
+    height: 8px;
+    background: var(--blue-clr);
+    border: 2px solid var(--main-bg);
     border-radius: 50%;
     z-index: 2;
 }
+.analog .toggle{
+    position: absolute;
+    right: -1rem;
+    top: -1rem;
+    width: 1.3rem;
+    height: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue-clr);
+    font-size: .8rem;
+    box-shadow: var(--toggle-box-shadow);
+    border-radius: 50%;
+    overflow: hidden;
+}
+.fa-moon{
+    display: none;
+}
+.toggle.active .fa-moon{
+    display: block;
+}
+.toggle.active .fa-sun{
+    display: none;
+}
 .analog .number{
     --rotation: 0;
+    color: var(--num-clr);
+    font-size: .8rem;
     position: absolute;
     width: 100%;
     height: 100%;
     text-align: center;
     transform: rotate(var(--rotation));
+    padding: 8px;
+}
+.number.big{
+    font-size: 1.3rem;
 }
 .analog .number1{--rotation: 30deg;}
 .analog .number2{--rotation: 60deg;}
@@ -52,21 +121,33 @@ main .analog{
     position: absolute;
     bottom: 50%;
     left: 50%;
+    border-radius: 1rem;
     z-index: 1;
     transform-origin: bottom;
 }
 .hour-hand{
-    width: 7px;
-    height: 30%;
-    background: black;
+    width: 4px;
+    height: 20%;
+    background: var(--bold-clr);
 }
 .min-hand{
-    width: 5px;
-    height: 40%;
-    background: black;
+    width: 3px;
+    height: 30%;
+    background: var(--bold-clr);
 }
 .sec-hand{
-    width: 3px;
-    height: 45%;
-    background: red;
+    width: 2px;
+    height: 34%;
+    background: var(--blue-clr);
+}
+.digital{
+    color: var(--bold-clr);
+    font-size: 2.5rem;
+    position: relative;
+}
+.digital .ampm{
+    position: absolute;
+    top: 0;
+    right: -2rem;
+    font-size: .9rem;
 }
