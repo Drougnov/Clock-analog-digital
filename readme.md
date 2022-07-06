@@ -19,7 +19,7 @@ This project teaches(especially) you how to:
 -get current date and time
 
 Here is my project site's url-
-<https://drougnov.github.io/clock-ui/>
+<drougnov.github.io/clock-analog-digital/>
 
 ## Built with
 
